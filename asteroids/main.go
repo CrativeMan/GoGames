@@ -30,7 +30,13 @@ func drawSpaceship(xOffset int32, yOffset int32) {
 }
 
 func inputManagment() {
-	if rl.IsKeyPressed(rl.KeyS) {
+	if rl.IsKeyPressed(rl.KeyW) {
+		CamerOffsetY -= 20
+	} else if rl.IsKeyPressed(rl.KeyS) {
 		CamerOffsetY += 20
+	} else if rl.IsKeyPressed(rl.KeyA) {
+		CamerOffsetX -= 20
+	} else if rl.IsKeyPressed(rl.KeyD) {
+		CamerOffsetX += 20
 	}
 }
