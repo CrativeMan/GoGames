@@ -2,8 +2,13 @@ package main
 
 import rl "github.com/gen2brain/raylib-go/raylib"
 
+var (
+	CamerOffsetX int32
+	CamerOffsetY int32
+)
+
 func main() {
-	rl.InitWindow(800, 450, "raylib - test window")
+	rl.InitWindow(800, 450, "Asteroids")
 	defer rl.CloseWindow()
 
 	rl.SetTargetFPS(60)
@@ -12,13 +17,20 @@ func main() {
 		rl.BeginDrawing()
 
 		rl.ClearBackground(rl.Black)
-		drawSpaceship()
+		inputManagment()
+		drawSpaceship(CamerOffsetX, CamerOffsetY)
 
 		rl.EndDrawing()
 	}
 }
 
-func drawSpaceship() {
-	rl.DrawLine(0, 0, 20, 100, rl.White)
-	rl.DrawLine(20, 100, 40, 0, rl.White)
+func drawSpaceship(xOffset int32, yOffset int32) {
+	rl.DrawLine(0+xOffset, 0+yOffset, 20+xOffset, 100+yOffset, rl.White)
+	rl.DrawLine(20+xOffset, 100+yOffset, 40+xOffset, 0+yOffset, rl.White)
+}
+
+func inputManagment() {
+	if rl.IsKeyPressed(rl.KeyS) {
+		CamerOffsetY += 20
+	}
 }
